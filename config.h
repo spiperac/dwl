@@ -129,6 +129,11 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 static const char *termcmd[] = { "ghostty", NULL };
 static const char *menucmd[] = { "wmenu-run", NULL };
 static const char *volumeMute[] = { "pamixer", "-t", NULL };
+static const char *takeScreenshot[] = {
+    "sh", "-c",
+    "f=~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png && grim -g \"$(slurp)\" \"$f\" && wl-copy < \"$f\"",
+    NULL
+};
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
@@ -138,6 +143,7 @@ static const Key keys[] = {
   { 0, XKB_KEY_XF86AudioRaiseVolume, spawn, SHCMD("pamixer -i 5") },
   { 0, XKB_KEY_XF86AudioLowerVolume, spawn, SHCMD("pamixer -d 5") },
   { 0, XKB_KEY_XF86AudioMute, spawn, {.v = volumeMute } },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_P,          spawn,          {.v = takeScreenshot} },
 	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,          focusstack,     {.i = -1} },
 	{ MODKEY,                    XKB_KEY_i,          incnmaster,     {.i = +1} },
@@ -168,7 +174,7 @@ static const Key keys[] = {
 	TAGKEYS(          XKB_KEY_7, XKB_KEY_ampersand,                  6),
 	TAGKEYS(          XKB_KEY_8, XKB_KEY_asterisk,                   7),
 	TAGKEYS(          XKB_KEY_9, XKB_KEY_parenleft,                  8),
-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_e,          quit,           {0} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_E,          quit,           {0} },
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
