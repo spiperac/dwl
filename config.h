@@ -134,6 +134,7 @@ static const char *takeScreenshot[] = {
     "f=~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png && grim -g \"$(slurp)\" \"$f\" && wl-copy < \"$f\"",
     NULL
 };
+static const char *lockScreen[] = {"swaylock", "-f", "-c", "000000", NULL};
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
@@ -144,6 +145,7 @@ static const Key keys[] = {
   { 0, XKB_KEY_XF86AudioLowerVolume, spawn, SHCMD("pamixer -d 5") },
   { 0, XKB_KEY_XF86AudioMute, spawn, {.v = volumeMute } },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_P,          spawn,          {.v = takeScreenshot} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_L,          spawn,          {.v = lockScreen} },
 	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,          focusstack,     {.i = -1} },
 	{ MODKEY,                    XKB_KEY_i,          incnmaster,     {.i = +1} },
