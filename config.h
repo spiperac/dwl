@@ -128,7 +128,8 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 /* commands */
 static const char *termcmd[] = { "foot", NULL };
-static const char *menucmd[] = { "wmenu-run", NULL };
+// static const char *menucmd[] = { "wmenu-run", NULL };
+static const char *menucmd[] = { "sh", "-c", "~/scripts/wofi_run.sh", NULL };
 static const char *volumeMute[] = { "pamixer", "-t", NULL };
 static const char *takeScreenshot[] = {
     "sh", "-c",
