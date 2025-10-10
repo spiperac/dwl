@@ -15,12 +15,13 @@ static const float urgentcolor[]           = COLOR(0xff0000ff);
 static const float fullscreen_bg[]         = {0.0f, 0.0f, 0.0f, 1.0f}; /* You can also use glsl colors */
 
 /* Autostart */
-static const char *const autostart[] = {
-        "swaybg", "-i", "/home/spiperac/NAS/backup/Backup/wallpapers/aishot-3069.jpg", NULL,
-        "waybar", NULL,
-        "nm-applet", NULL,
-        NULL /* terminate */
-};
+/* MOVED AUTOSTART TO dwl.desktop and ~/scripts/autostart.sh
+// static const char *const autostart[] = {
+//         "swaybg", "-i", "/home/spiperac/NAS/backup/Backup/wallpapers/laptop.jpeg", NULL,
+//         "waybar", NULL,
+//         "nm-applet", NULL,
+//         NULL /* terminate */
+// };
 /* tagging - TAGCOUNT must be no greater than 31 */
 #define TAGCOUNT (9)
 
