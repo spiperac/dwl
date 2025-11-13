@@ -150,11 +150,19 @@ static const enum libinput_config_tap_button_map button_map =
 /* commands */
 static const char *termcmd[] = {"ghostty", NULL};
 // static const char *menucmd[] = { "wmenu-run", NULL };
-static const char *menucmd[] = {"fuzzel", NULL};
+static const char *menucmd[] = {"fuzzel",   "--background",
+                                "141415ff", "--text",
+                                "cdcdcdff", "--selection-color",
+                                "333738ff", "--selection-text-color",
+                                "cdcdcdff", "--match-color",
+                                "405065ff", "--border-color",
+                                "bd93f9ff", NULL};
+
 static const char *runcmd[] = {"wmenu-run", NULL};
 static const char *keepassxc[] = {"sh", "-c", "~/scripts/wmenu_keepassxc.sh",
                                   NULL};
-static const char *volumeMute[] = {"pamixer", "-t", NULL};
+static const char *volumeMute[] = {"wpctl", "set-mute", "@DEFAULT_AUDIO_SINK@",
+                                   "toggle", NULL};
 static const char *takeScreenshot[] = {
     "sh", "-c",
     "f=~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png && grim -g "
@@ -167,8 +175,10 @@ static const Key keys[] = {
     /* modifier                  key                 function        argument */
     {MODKEY, XKB_KEY_d, spawn, {.v = menucmd}},
     {MODKEY, XKB_KEY_Return, spawn, {.v = termcmd}},
-    {0, XKB_KEY_XF86AudioRaiseVolume, spawn, SHCMD("pamixer -i 5")},
-    {0, XKB_KEY_XF86AudioLowerVolume, spawn, SHCMD("pamixer -d 5")},
+    {0, XKB_KEY_XF86AudioRaiseVolume, spawn,
+     SHCMD("wpctl set-volume @DEFAULT_SINK@ 5%+")},
+    {0, XKB_KEY_XF86AudioLowerVolume, spawn,
+     SHCMD("wpctl set-volume @DEFAULT_SINK@ 5%-")},
     {0, XKB_KEY_XF86AudioMute, spawn, {.v = volumeMute}},
     {MODKEY | WLR_MODIFIER_SHIFT, XKB_KEY_P, spawn, {.v = takeScreenshot}},
     {MODKEY | WLR_MODIFIER_SHIFT, XKB_KEY_L, spawn, {.v = lockScreen}},
