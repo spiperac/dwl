@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=dwl
 Comment=dwm for Wayland
-Exec=dwl -s ~/scripts/autostart.sh
+Exec=dwl
 Type=Application
+DesktopNames=dwl
